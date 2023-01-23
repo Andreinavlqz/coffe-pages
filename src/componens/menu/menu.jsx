@@ -1,44 +1,58 @@
 import React, { useState } from 'react';
-import './/menu.css';
+import ProductCard from './ProductCard';
+import CategoryFilter from './CategoryFilter';
+import products from './data';
+import './menu.css'
 
 const Menu = () => {
-  const [items, setItems] = useState([
-    { id: 1, name: 'Café Americano', price: 2.50 },
-    { id: 2, name: 'Café Latte', price: 3.50 },
-    { id: 3, name: 'Cappuccino', price: 4.00 }
-  ]);
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [cart, setCart] = useState([]);
+    const [total, setTotal] = useState(0);
 
-  const [cart, setCart] = useState([]);
+    const handleFilterChange = (category) => {
+        setSelectedCategory(category);
+    }
 
-  const addToCart = (item) => {
-    setCart([...cart, item]);
-  }
+    const handleAddToCart = (product) => {
+        setCart([...cart, product]);
+        setTotal(total + product.price);
+    }
 
-  return (
-    <div>
-      <h1>Menú</h1>
-      <ul>
-        {items.map(item => (
-          <li key={item.id}>
-            <h2>{item.name}</h2>
-            <p>Precio: ${item.price}</p>
-            <button onClick={() => addToCart(item)}>Añadir al carrito</button>
-          </li>
-        ))}
-      </ul>
-      <h2>Carrito</h2>
-      <ul>
-        {cart.map(item =>
-            (
-<li key={item.id}>
-<h3>{item.name}</h3>
-<p>Precio: ${item.price}</p>
-</li>
-))}
-</ul>
-</div>
-)
-}
+    const filteredProducts = products.filter((product) => {
+        if (!selectedCategory) {
+            return true;
+        }
+        return product.category === selectedCategory;
+    });
+
+    return (
+        <div className="menu">
+            <h1>Menú de la cafeteria</h1>
+            <CategoryFilter 
+                categories={["Café", "Té", "Pastelería", "Bebidas frías","Panaderia",]} 
+                onFilterChange={handleFilterChange} 
+            />
+            <div className="product-list">
+                {filteredProducts.map((product) => (
+                    <ProductCard
+                        key={product.name}
+                        name={product.name}
+                        price={product.price}
+                        image={product.image}
+                        category={product.category}
+                        onAddToCart={() => handleAddToCart(product)}
+                    />
+                ))}
+            </div>
+            
+            <div className="contact-info">
+                <h2>Información de contacto</h2>
+                <p>Dirección: 123 Main St</p>
+                <p>Teléfono: 555-555-5555</p>
+                <p>Email: info@cafeteria.com</p>
+            </div>
+        </div>
+    );
+};
 
 export default Menu;
-

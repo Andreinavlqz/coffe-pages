@@ -1,21 +1,27 @@
-import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import './App.css'
-import './componens/Navbar/Navbar'
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./index.css";
+import Navbar from "./componens/Navbar/Navbar";
+import "./componens/footer/location";
 
-import AboutPage from './componens/aboutPage/AboutPage'
-import Menu from './componens/menu/menu.jsx';
+import AboutPage from "./componens/aboutPage/AboutPage";
+import Menu from "./componens/menu/Menu";
+import Cart from "./componens/Carrito/Cart"
+
 
 const App = () => {
   return (
-    <BrowserRouter>     <Route path="/aboutPage.jsx" component={AboutPage} />
-<Route path="/menu.jsx" component={Menu} />
-{/*<Route path='/gallery.jsx' component={Gallery} />
-<Route path='/location.jsx' component={Location} />*/}
-      
-</BrowserRouter>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<AboutPage />} />
+        <Route path="/aboutPage" element={<AboutPage />} />
+        <Route path="/Menu" element={<Menu />} />
+        <Route path="/Cart" element={<Cart />} />
+      </Routes>
+      <Menu/>
+    </BrowserRouter>
   );
-}
+};
 
-
-export default App
+export default App;
