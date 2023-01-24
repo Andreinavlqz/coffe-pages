@@ -16,6 +16,7 @@ body {
 	max-width: 1000px;
 	margin: auto;
 	overflow: hidden;
+	
 }
 
 /* ----- ----- HEADER ----- ----- */
@@ -83,59 +84,35 @@ header .textos h3 {
 }
 
 /* ----- ----- MEDIA QUERIES ----- ----- */
-@media screen and (max-width: 800px) {
-	header .contenedor {
-		position: static;
-		height: auto;
-	}
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+    .contenedor {
+        width: 100%;
+        max-width: none;
+    }
+}
 
-	header .textos {
-		position: static;
-		margin: 100px 0;
-	}
+/* Estilos para pantallas medianas */
+@media screen and (min-width: 601px) and (max-width: 900px) {
+    .contenedor {
+        max-width: 700px;
+    }
+    header .menu a {
+        margin: 20px 10px;
+    }
+}
 
-	header .menu {
-		text-align: center;
-	}
-
-	header .menu a {
-		margin: 10px 20px;
-	}
-
-	header .textos .nombre {
-		font-size: 30px;
-	}
-
-	header .textos h3 {
-		font-size: 18px;
-	}
-
-	.main .acerca-de .foto {
-		position: relative;
-		width: 100%;
-	}
-
-	.main .acerca-de article {
-		position: relative;
-		width: 100%;
-		top:-50px;
-		transform: translate(0px, 0);
-	}
-
-	.main .menu {
-		padding-top: 300px;
-	}
-
-	.main .menu article {
-		width: 100%;
-	}
-
-	.main .galeria .foto {
-		width: 50%;
-	}
-
-	.main .mapa {
-		width: 80%;
-		margin: auto;
-	}
+/* Estilos para pantallas grandes */
+@media screen and (min-width: 901px) {
+    body {
+        font-size: 18px;
+    }
+    .contenedor {
+        max-width: 1000px;
+    }
+    header .menu a {
+        margin: 40px 20px;
+    }
 }
